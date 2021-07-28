@@ -22,101 +22,25 @@ a {
   text-decoration: none;
 }
 
-.header {
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
-
-.header__wrap {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
+.header-wrap{
+  padding-top: 10px;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
 }
-
-.header__logo {
-  max-width: 150px;
-  max-height: 150px;
-  overflow: hidden;
-}
-
-.header__logo-img {
-  max-width: 150px;
-  min-height: 150px;
-}
-
-.header__navigation {
-  max-width: 300px;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
+.main-wrap{
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
+}
+.book-img{
+  max-width: 200px;
+  margin-top: 15px;
+}
+.book__title{
+  min-height: 70px;
+}
+.book__year{
+  display: block;
+  margin-top: 15px;
+  text-align: start;
 }
 
-.header-link {
-  color: #000;
-}
-
-.header-search {
-  max-width: 250px;
-  width: 100%;
-  min-height: 29px;
-  background-color: #000;
-  border: none;
-  color: #fff;
-  padding-left: 15px;
-}
-
-.header-button {
-  padding: 10px 40px;
-  background-color: red;
-  color: #fff;
-}
-
-.footer {
-  padding-top: 30px;
-  padding-bottom: 30px;
-  background-color: #000;
-}
-
-.footer-title {
-  color: #fff;
-  font-size: 40px;
-  text-align: center;
-}
-
-.main {
-  min-height: 500px;
-}
-
-.regestr {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  max-width: 500px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.regestr-input {
-  margin-bottom: 10px;
-  width: 100%;
-}
-/*# sourceMappingURL=main.css.map */
