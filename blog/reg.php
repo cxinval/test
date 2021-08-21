@@ -7,21 +7,21 @@
             <label for="floatingInput">Фамилия</label>
         </div>
         <div class="form-floating">
-            <input type="password" class="form-control mt-3 mb-2" name="password">
+            <input type="text" class="form-control mt-3 mb-2" name="password">
             <label for="floatingPassword">Имя</label>
         </div>
 
         <div class="form-floating">
-            <input type="password" class="form-control mt-3 mb-2" name="password">
+            <input type="text" class="form-control mt-3 mb-2" name="password">
             <label for="floatingPassword">Отчестово</label>
         </div>
 
         <div class="form-floating">
-            <input type="password" class="form-control mt-3 mb-2" name="password">
+            <input type="text" class="form-control mt-3 mb-2" name="password">
             <label for="floatingPassword">Логин</label>
         </div>
         <div class="form-floating">
-            <input type="password" class="form-control mt-3 mb-2" name="password">
+            <input type="email" class="form-control mt-3 mb-2" name="password">
             <label for="floatingPassword">Email</label>
         </div>
         <div class="form-floating">
