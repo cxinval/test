@@ -9,7 +9,7 @@
                   <h4 class="my-0 fw-normal book__title">
                     PHP и MySQL. Разработка веб-приложений
                   </h4>
-                  <img class="book-img" src="img/3.jpg" alt="" />
+                  <img class="book-img" src="../img/3.jpg" alt="" />
                   <span class="book__year">Год издания: 29 июня 2016</span>
                 </div>
                 <div class="card-body">

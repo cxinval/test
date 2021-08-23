@@ -4,8 +4,13 @@
     <nav class="navbar navbar-light bg-light">
   <div class="container-fluid">
     <form action="blog/books_search.php" method="POST" class="d-flex form_list">
-      <input class="form-control me-2" list="list" type="search" placeholder="Что ищем?">
+      <input class="form-control me-2" list="list" type="search" placeholder="Что ищем?" name="b_search">
       <input class="btn btn-outline-success" type="submit" placeholder="Поиск">
+      <datalist id="list">
+        <option value="php7">
+        <option value="Компьютер глазами хакера">
+        <option value="PHP и MySQL. Разработка веб-приложений">
+      </datalist>
     </form>
   </div>
 </nav>
