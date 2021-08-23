@@ -1,4 +1,4 @@
-<?php require('blog/header.php');?>
+<?php require('header.php');?>
 <div class="container">
     <form class="col-6 " action="login_1.php" method="POST">
         <h1 class="h3 mb-3 fw-normal">Пожалуйста войдите</h1>
@@ -21,4 +21,4 @@
         
     </form>
 </div>
-<?php require('blog/footer.php');?>  
+<?php require('footer.php');?>  
