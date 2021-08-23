@@ -1,4 +1,4 @@
-<?php require('blog/header.php');?>
+<?php include('blog/header.php');?>
     <main>
       <div class="container">
         <div class="main-wrap">
@@ -61,5 +61,5 @@
         </div>
       </div>
     </main>
-<?php require('blog/footer.php');?>   
+<?php include('blog/footer.php');?>   
 

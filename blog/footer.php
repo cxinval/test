@@ -1,15 +1,14 @@
 <footer class="pt-4 my-md-5 pt-md-5 border-top">
   <div class="container">
     <div class="mb-3 l_search">
-      <form action="" method="POST">
-        <label for="exampleDataList" class="form-label">Поиск по книгам</label>
-        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Что ищем?">
-        <datalist id="datalistOptions">
-          <option value="PHP 7">
-          <option value="Компьютер глазами хакера">
-          <option value="PHP и MySQL. Разработка веб-приложений">
-        </datalist>
-      </form>
+    <nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <form action="blog/books_search.php" method="POST" class="d-flex form_list">
+      <input class="form-control me-2" list="list" type="search" placeholder="Что ищем?">
+      <input class="btn btn-outline-success" type="submit" placeholder="Поиск">
+    </form>
+  </div>
+</nav>
     </div>
     <div class="row">
       <div class="col-3 col-md">
