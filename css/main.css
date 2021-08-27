@@ -29,7 +29,8 @@ a {
 }
 .main-wrap{
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 .book-img{
   max-width: 200px;
@@ -37,6 +38,13 @@ a {
 }
 .book__title{
   min-height: 70px;
+}
+.card{
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 30%;
+  margin-bottom: 20px;
+  max-height: 523px;
 }
 .book__year{
   display: block;
@@ -46,6 +54,17 @@ a {
 .form_list{
   max-width: 600px !important;
   width: 100%;
+}
+.text_s{
+  font-size: 20px;
+  font-weight: bold;
+  color: red;
+}
+.login_t{
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: red;
 }
 
 

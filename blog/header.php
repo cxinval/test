@@ -35,7 +35,7 @@
               <a class="me-3 py-2 text-dark text-decoration-none" href="#"
                 >Контакты</a
               >
-              <a class="py-2 text-dark text-decoration-none" href="blog/login.php">Войти</a>
+              <a class="py-2 text-dark text-decoration-none" href="../blog/login.php">Войти</a>
             </nav>
           </div>
         </div>
