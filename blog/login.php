@@ -15,8 +15,8 @@
         <button class="w-100 btn btn-lg btn-primary" type="submit" name="log_in">Войти</button>
         <a href="reg.php" class="mt-2 w-100 btn btn-lg btn-primary mb-5" type="submit" name="log_in">Регистрация</a>
         <?php
-        $user = $_POST['login'];
-        $password = $_POST['password'];
+        $user = $_POST['login'] ?? null;
+        $password = $_POST['password'] ?? null;
         $login = ['login' => $user, 'password' => $password];
         $login_list = [
             'pf_1' => ['login' => 'admin', 'password' => '123'],
@@ -26,8 +26,9 @@
             'pf_5' => ['login' => 'itproger', 'password' => '0000']
         ];
         foreach ($login_list as $key => $value) {
-            if ($login['login'] === $value['login'] && $login['password'] === $value['password']) {
-                echo '0';
+            if ($login['login'] === $value['login'] && $login['password'] === $value['password']) {?>
+                <span class="login_t"><?php echo 'Авторизация успешно выполнена!';?></span><?php
+                break;
             } else {?>
                 <span class="login_t"><?php echo 'Логин и пароль неверные!';?></span>
                 <?php
