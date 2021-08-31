@@ -19,9 +19,6 @@
             <span class="fs-4">Книга</span>
           </a>
           <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto nav_blog">
-            <a class="me-3 py-2 text-dark text-decoration-none" href="#">Каталог</a>
-            <a class="me-3 py-2 text-dark text-decoration-none" href="#">Автор</a>
-            <a class="me-3 py-2 text-dark text-decoration-none" href="#">Контакты</a>
             <?php
             if($_COOKIE['user'] === 'true'){?>
               <a class="py-2 text-dark text-decoration-none login_in" href="../blog/logout.php"></a>
