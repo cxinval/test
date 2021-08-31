@@ -1,4 +1,6 @@
-<?php require('header.php'); ?>
+<?php ob_start();
+include('header.php');
+?>
 <div class="container">
     <form class="col-6 " action="" method="POST">
         <h1 class="h3 mb-3 fw-normal">Пожалуйста войдите</h1>
@@ -11,31 +13,36 @@
             <label for="floatingPassword">Пароль</label>
         </div>
 
-        
+
         <button class="w-100 btn btn-lg btn-primary" type="submit" name="log_in">Войти</button>
         <a href="reg.php" class="mt-2 w-100 btn btn-lg btn-primary mb-5" type="submit" name="log_in">Регистрация</a>
         <?php
-        $user = $_POST['login'] ?? null;
-        $password = $_POST['password'] ?? null;
+
+
+        $user = $_POST['login'];
+        $password = $_POST['password'];
         $login = ['login' => $user, 'password' => $password];
         $login_list = [
-            'pf_1' => ['login' => 'admin', 'password' => '123'],
-            'pf_2' => ['login' => 'adminn', 'password' => '852456'],
-            'pf_3' => ['login' => 'cxinval', 'password'  => '654258'],
-            'pf_4' => ['login' => 'russia', 'password' => '233223'],
-            'pf_5' => ['login' => 'itproger', 'password' => '0000']
+            ['login' => 'admin', 'password' => '123'],
+            ['login' => 'adminn', 'password' => '852456'],
+            ['login' => 'cxinval', 'password'  => '654258'],
+            ['login' => 'russia', 'password' => '233223'],
+            ['login' => 'itproger', 'password' => '0000']
         ];
-        foreach ($login_list as $key => $value) {
-            if ($login['login'] === $value['login'] && $login['password'] === $value['password']) {?>
-                <span class="login_t"><?php echo 'Авторизация успешно выполнена!';?></span><?php
-                break;
-            } else {?>
-                <span class="login_t"><?php echo 'Логин и пароль неверные!';?></span>
-                <?php
+        if (!empty($_POST)) {
+            foreach ($login_list as $key => $value) {
+                if ($login['login'] === $value['login'] && $login['password'] === $value['password']) {
+                    setcookie('user', 'true', time()+3600, "/"); 
+                    header('Location: ../index.php');
+                    
+                }else{
+                    echo '1';
+                }
             }
-            break;
         }
+
         ?>
     </form>
 </div>
-<?php require('footer.php'); ?>
+<?php include('footer.php');
+ob_end_flush(); ?>

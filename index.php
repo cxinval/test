@@ -13,6 +13,11 @@
               <option value="PHP и MySQL. Разработка веб-приложений">
             </datalist>
           </form>
+          <form class='form-sort' action="" method="POST">
+            <input class="btn btn-outline-dark add_btn sort__btn" name="sort__btn" type="submit" value="Сортировать" />
+            <input class="btn btn-outline-dark add_btn sort__btn" name="sort__btn2" type="submit" value="Сортировать" />
+            <input class="btn btn-outline-dark add_btn sort__btn" name="sort__btn3" type="submit" value="Сортировать" />
+          </form>
         </div>
       </nav>
     </div>
@@ -23,8 +28,22 @@
       $s_list = [
         ['name' => 'PHP 7', 'img' => 'img/1.jpg', 'date' => '31 мая 2017'],
         ['name' => 'Компьютер глазами хакера', 'img' => 'img/2.jpg',  'date' => '17 декабря 2012'],
-        ['name' => 'PHP и MySQL. Разработка веб-приложений', 'img' => 'img/3.jpg',  'date' => '29 июня 2016']
+        ['name' => 'PHP и MySQL. Разработка веб-приложений', 'img' => 'img/3.jpg',  'date' => '29 июня 2016'],
       ];
+      if (isset($_POST['sort__btn'])){
+        krsort($s_list);
+      }
+      if (isset($_POST['sort__btn2'])){
+          array_rand($s_list);
+      }
+      if (isset($_POST['sort__btn3'])){
+          sort($s_list);
+      }
+
+      if (!empty($_POST) && isset($_POST['addNameBook']) && isset($_POST['addDateBook'])) {
+        $s_list[] = ['name' => $_POST['addNameBook'], 'img' => 'img/3.jpg', 'date' => $_POST['addDateBook']]; 
+      }
+      
       foreach ($s_list as $key => $value) :
         if (!$b_search || $b_search === $value['name']) { ?>
           <div class="col-3 text-center card">
@@ -42,8 +61,11 @@
             </div>
           </div>
       <?php }
-      endforeach; ?>
+      endforeach; 
+      
+      ?>
     </div>
+    <a href="blog\add.php" class="btn btn-outline-dark add_btn">Добавить свое</a>
   </div>
 </main>
 <?php include('blog/footer.php'); ?>
