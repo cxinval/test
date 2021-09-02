@@ -1,4 +1,6 @@
-<?php include('header.php'); ?>
+<?php 
+ob_start();
+include('header.php'); ?>
 <div class="container">
     <form action="../index.php" method="POST">
         <div class="input-group input-group-sm mb-3">
@@ -11,8 +13,10 @@
         </div>
         <div class="input-group">
             <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="addFile">
-            <input class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04" value="Добавиить">
+            <input class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04" value="Добавиить" name='btnAdd'>
         </div>
     </form>
 </div>
-<?php include('footer.php'); ?>
+
+<?php include('footer.php');
+ob_end_flush(); ?>
