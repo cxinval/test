@@ -1,5 +1,5 @@
 <?php 
-ob_start();
+session_start();
 include('header.php'); ?>
 <div class="container">
     <form action="../index.php" method="POST">
@@ -18,5 +18,6 @@ include('header.php'); ?>
     </form>
 </div>
 
-<?php include('footer.php');
-ob_end_flush(); ?>
+<?php include('footer.php'); ?>
+
+

@@ -1,5 +1,5 @@
 <?php 
-ob_start();
+session_start();
 include('blog/header.php'); ?>
 <main>
   <div class="container">
@@ -15,9 +15,10 @@ include('blog/header.php'); ?>
               <option value="PHP и MySQL. Разработка веб-приложений">
             </datalist>
           </form>
-          <form class='form-sort' action="" method="POST">
-            <input class="btn btn-outline-dark add_btn sort__btn" name="sortBtnDate" type="submit" value="Дата" />
-            <input class="btn btn-outline-dark add_btn sort__btn" name="sortBtnName" type="submit" value="Имя" />
+          <form class='form-sort' method="POST" id="sortForm">
+            <input class="btn btn-outline-dark add_btn" name="sortBtnDate" type="submit" value="Дата" />
+            <input class="btn btn-outline-dark add_btn" name="sortBtnName" type="submit" value="Имя" />
+            
           </form>
         </div>
       </nav>
@@ -25,7 +26,7 @@ include('blog/header.php'); ?>
     <div class="main-wrap">
 
       <?php
-      session_start();
+      
       $s_list = [
         ['name' => 'PHP 7', 'img' => 'img/1.jpg', 'date' => '31 мая 2017'],
         ['name' => 'Компьютер глазами хакера', 'img' => 'img/2.jpg',  'date' => '17 декабря 2012'],
@@ -36,26 +37,26 @@ include('blog/header.php'); ?>
         arsort($s_list);
       }
       if (isset($_POST['sortBtnName'])) {
-        sort($s_list);}
+        sort($s_list);
+      } 
 
-
-
-
+        $message = '';
       if (!empty($_POST) && isset($_POST['addNameBook']) && isset($_POST['addDateBook'])) {
-        setcookie('bookAdd', 'true', time()+3600, "/");
-      }
-      if($_COOKIE['bookAdd'] === 'true'){
-        $s_list[] = ['name' => $_POST['addNameBook'], 'img' => 'img/3.jpg', 'date' => $_POST['addDateBook']];
-      }
+        $_SESSION['books'][] = ['name' => $_POST['addNameBook'], 'img' => 'img/1.jpg', 'date' => $_POST['addDateBook']]; 
+        $s_list = $_SESSION['books'] + $s_list;         
+        }
+        $s_list = $_SESSION['books'] + $s_list; 
+        
+        
+        var_dump($s_list);
       
-
       if ($_POST['b_search'] != '') {
         $s_list =  array_filter($s_list, function (array $val) {
           return strripos (strtolower($val['name']) , strtolower($_POST['b_search'])) !== false;
         }
       );
       }
-      foreach ($s_list as $key => $value) :
+      foreach ($s_list as $key => $value) {
         
       ?>
         <div class="cards">
@@ -68,9 +69,7 @@ include('blog/header.php'); ?>
             </div>
           </div>
         </div>
-      <?php 
-     
-      endforeach  ?>
+      <?php  }  ?>
 
 
 
@@ -78,6 +77,7 @@ include('blog/header.php'); ?>
     </div>
 </main>
 <?php 
-include('blog/footer.php'); 
-ob_end_flush();?>
 
+include('blog/footer.php'); 
+
+?>

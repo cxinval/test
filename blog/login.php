@@ -34,7 +34,6 @@ include('header.php');
                 if ($login['login'] === $value['login'] && $login['password'] === $value['password']) {
                     setcookie('user', 'true', time()+3600, "/"); 
                     header('Location: ../index.php');
-                    
                 }else{
                     echo '1';
                 }
