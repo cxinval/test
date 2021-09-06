@@ -11,14 +11,14 @@ include('blog/header.php'); ?>
             <input class="btn btn-outline-success" type="submit" placeholder="Поиск" value="Поиск">
             <datalist id="list">
               <option value="PHP 7">
-              <option value="Компьютер глазами хакера">
+              <option value="Компьютер глазами хакера"></option>
               <option value="PHP и MySQL. Разработка веб-приложений">
             </datalist>
           </form>
-          <form class='form-sort' method="POST" id="sortForm">
-            <input class="btn btn-outline-dark add_btn" name="sortBtnDate" type="submit" value="Дата" />
+          
+          <form class='form-sort' method="GET" id="myIframe">
+            <input class="btn btn-outline-dark add_btn active" name="sortBtnDate" type="submit" value="Дата" />
             <input class="btn btn-outline-dark add_btn" name="sortBtnName" type="submit" value="Имя" />
-            
           </form>
         </div>
       </nav>
@@ -33,22 +33,26 @@ include('blog/header.php'); ?>
         ['name' => 'PHP и MySQL. Разработка веб-приложений', 'img' => 'img/3.jpg',  'date' => '29 июня 2016'],
       ];
       
-      if (isset($_POST['sortBtnDate'])) {
+      if (isset($_GET['sortBtnDate'])) {
         arsort($s_list);
       }
-      if (isset($_POST['sortBtnName'])) {
+      if (isset($_GET['sortBtnName'])) {
         sort($s_list);
       } 
 
-        $message = '';
       if (!empty($_POST) && isset($_POST['addNameBook']) && isset($_POST['addDateBook'])) {
-        $_SESSION['books'][] = ['name' => $_POST['addNameBook'], 'img' => 'img/1.jpg', 'date' => $_POST['addDateBook']]; 
-        $s_list = $_SESSION['books'] + $s_list;         
+        $_SESSION['books'][] = ['name' => $_POST['addNameBook'], 'img' => 'img/1.jpg', 'date' => $_POST['addDateBook']];       
         }
-        $s_list = $_SESSION['books'] + $s_list; 
         
         
-        var_dump($s_list);
+        
+        if ($_SESSION['books'] != null){
+          $s_list = array_merge($_SESSION['books'], $s_list); 
+        }else{
+          
+        }
+         
+        
       
       if ($_POST['b_search'] != '') {
         $s_list =  array_filter($s_list, function (array $val) {
