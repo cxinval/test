@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include('blog/header.php'); ?>
 <main>
@@ -15,10 +15,12 @@ include('blog/header.php'); ?>
               <option value="PHP и MySQL. Разработка веб-приложений">
             </datalist>
           </form>
-          
+
           <form class='form-sort' method="GET" id="myIframe">
-            <input class="btn btn-outline-dark add_btn active" name="sortBtnDate" type="submit" value="Дата" />
-            <input class="btn btn-outline-dark add_btn" name="sortBtnName" type="submit" value="Имя" />
+            <input class="btn btn-outline-dark add_btn <?= ($_GET['sortBtnDateUp'] === 'Дата+возрастание') ? 'active' : '' ?>" name="sortBtnDateUp" type="submit" value="Дата возрастание" />
+            <input class="btn btn-outline-dark add_btn <?= ($_GET['sortBtnDateDown'] === 'Дата+убывание') ? 'active' : '' ?>" name="sortBtnDateDown" type="submit" value="Дата убывание" />
+            <input class="btn btn-outline-dark add_btn <?= ($_GET['sortBtnNameA'] === 'От+А+до+Я') ? 'active' : '' ?>" name="sortBtnNameA" type="submit" value="От А до Я" />
+            <input class="btn btn-outline-dark add_btn <?= ($_GET['sortBtnNameZ'] === 'От+Я+до+А') ? 'active' : '' ?>" name="sortBtnNameZ" type="submit" value="От Я до А" />
           </form>
         </div>
       </nav>
@@ -26,42 +28,59 @@ include('blog/header.php'); ?>
     <div class="main-wrap">
 
       <?php
-      
+
+
+
+
       $s_list = [
-        ['name' => 'PHP 7', 'img' => 'img/1.jpg', 'date' => '31 мая 2017'],
-        ['name' => 'Компьютер глазами хакера', 'img' => 'img/2.jpg',  'date' => '17 декабря 2012'],
-        ['name' => 'PHP и MySQL. Разработка веб-приложений', 'img' => 'img/3.jpg',  'date' => '29 июня 2016'],
+        ['name' => 'PHP 7', 'img' => 'img/1.jpg', 'date' => date("d.M.Y", '1496188800')],
+        ['name' => 'Компьютер глазами хакера', 'img' => 'img/2.jpg',  'date' => date("d.M.Y", '1355702400')],
+        ['name' => 'PHP и MySQL. Разработка веб-приложений', 'img' => 'img/3.jpg',  'date' => date("d.M.Y", '1467158400')],
       ];
-      
-      if (isset($_GET['sortBtnDate'])) {
-        arsort($s_list);
+
+      if (isset($_GET['sortBtnDateUp'])) {
+        $sortDownDate = usort($s_list, function($a, $b){
+          return $a['date'] <=> $b['date'];
+        });  
       }
-      if (isset($_GET['sortBtnName'])) {
-        sort($s_list);
-      } 
+      if (isset($_GET['sortBtnDateDown'])) {
+        $sortUpDate = usort($s_list, function ($a, $b) {
+          if ($a['data'] == $b['date']) return 0;
+          return $a['date'] > $b['date'] ? -1 : 1;
+        });
+      }
+      if (isset($_GET['sortBtnNameA'])) {
+        $sortDownLet = usort($s_list, function($a, $b){
+          if($a['name'] == $b['name']) return 0;
+          return $a['name'] < $b['name'] ? -1 : 1;   
+      }); 
+      }
+      if (isset($_GET['sortBtnNameZ'])) {
+        $sortUpLet = usort($s_list, function($a, $b){
+          if($a['name'] == $b['name']) return 0;
+          return $a['name'] > $b['name'] ? 1 : 1;  
+      });
+      }
 
       if (!empty($_POST) && isset($_POST['addNameBook']) && isset($_POST['addDateBook'])) {
-        $_SESSION['books'][] = ['name' => $_POST['addNameBook'], 'img' => 'img/1.jpg', 'date' => $_POST['addDateBook']];       
-        }
-        
-        
-        
-        if ($_SESSION['books'] != null){
-          $s_list = array_merge($_SESSION['books'], $s_list); 
-        }else{
-          
-        }
-         
-        
-      
+        $_SESSION['books'][] = ['name' => $_POST['addNameBook'], 'img' => 'img/1.jpg', 'date' => $_POST['addDateBook']];
+      }
+      if ($_SESSION['books'] != null) {
+        $s_list = array_merge($_SESSION['books'], $s_list);
+      }
+
+
+
       if ($_POST['b_search'] != '') {
-        $s_list =  array_filter($s_list, function (array $val) {
-          return strripos (strtolower($val['name']) , strtolower($_POST['b_search'])) !== false;
-        }
-      );
+        $s_list =  array_filter(
+          $s_list,
+          function (array $val) {
+            return strripos(strtolower($val['name']), strtolower($_POST['b_search'])) !== false;
+          }
+        );
       }
       foreach ($s_list as $key => $value) {
-        
+
       ?>
         <div class="cards">
           <div class="card-main">
@@ -80,8 +99,8 @@ include('blog/header.php'); ?>
       <a href="blog\add.php" class="btn btn-outline-dark add_btn">Добавить свое</a>
     </div>
 </main>
-<?php 
+<?php
 
-include('blog/footer.php'); 
+include('blog/footer.php');
 
 ?>
