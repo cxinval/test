@@ -17,10 +17,10 @@ include('blog/header.php'); ?>
           </form>
 
           <form class='form-sort' method="GET" id="myIframe">
-            <input class="btn btn-outline-dark add_btn <?= (($_GET['sortBtnDateUp'] === 'Дата возрастание') ? 'active' : '') ?>" name="sortBtnDateUp" type="submit" value="Дата возрастание" />
-            <input class="btn btn-outline-dark add_btn <?= ($_GET['sortBtnDateDown'] === 'Дата убывание') ? 'active' : '' ?>" name="sortBtnDateDown" type="submit" value="Дата убывание" />
-            <input class="btn btn-outline-dark add_btn <?= ($_GET['sortBtnNameA'] === 'От А до Я') ? 'active' : '' ?>" name="sortBtnNameA" type="submit" value="От А до Я" />
-            <input class="btn btn-outline-dark add_btn <?= ($_GET['sortBtnNameZ'] === 'От Я до А') ? 'active' : '' ?>" name="sortBtnNameZ" type="submit" value="От Я до А" />
+            <input class="btn btn-outline-dark add_btn <?= (($_GET['sortBtnDateUp'] === 'Дата возрастание' || $_SESSION['sortDownDate']) ? 'active' : '') ?>" name="sortBtnDateUp" type="submit" value="Дата возрастание" />
+            <input class="btn btn-outline-dark add_btn <?= ($_GET['sortBtnDateDown'] === 'Дата убывание' || $_SESSION['sortUpDate']) ? 'active' : '' ?>" name="sortBtnDateDown" type="submit" value="Дата убывание" />
+            <input class="btn btn-outline-dark add_btn <?= ($_GET['sortBtnNameA'] === 'От А до Я' || $_SESSION['sortDownLet']) ? 'active' : '' ?>" name="sortBtnNameA" type="submit" value="От А до Я" />
+            <input class="btn btn-outline-dark add_btn <?= ($_GET['sortBtnNameZ'] === 'От Я до А' || $_SESSION['sortUpLet']) ? 'active' : '' ?>" name="sortBtnNameZ" type="submit" value="От Я до А" />
           </form>
         </div>
       </nav>
@@ -29,8 +29,7 @@ include('blog/header.php'); ?>
 
       <?php
 
-
-      
+     
       $s_list = [
         ['name' => 'PHP 7', 'img' => 'img/1.jpg', 'date' => date("d.M.Y", '1496188800')],
         ['name' => 'Компьютер глазами хакера', 'img' => 'img/2.jpg',  'date' => date("d.M.Y", '1355702400')],
@@ -45,50 +44,52 @@ include('blog/header.php'); ?>
         $_SESSION['books'][] = ['name' => $_POST['addNameBook'], 'img' => 'img/1.jpg', 'date' => date("d.M.Y", $formatDateBook)];
       }
 
-
-
-
       if ($_SESSION['books'] != null) {
         $s_list = array_merge($_SESSION['books'], $s_list);
       }
 
-
-
-
-
-      if (isset($_GET['sortBtnDateUp'])) {
+      if (!empty($_GET['sortBtnDateUp'])) {
           $_SESSION['sortDownDate'] = usort($s_list, function ($a, $b) {
           return $a['date'] <=> $b['date'];
         });
+        if(($_GET['sortBtnDateUp'] !== 'Дата возрастание') != 'active'){
+          unset($_SESSION['sortDownDate']);
+         }
       }
 
-
-
-
       if (isset($_GET['sortBtnDateDown'])) {
-        $sortUpDate = usort($s_list, function ($a, $b) {
+        $_SESSION['sortUpDate'] = usort($s_list, function ($a, $b) {
           if ($a['data'] == $b['date']) return 0;
           return $a['date'] > $b['date'] ? -1 : 1;
         });
+        if(($_GET['sortBtnDateDown'] === 'Дата возрастание') !== 'active'){
+          unset($_SESSION['sortUpDate']);
+         }
       }
-
-
-
+      
       if (isset($_GET['sortBtnNameA'])) {
-        $sortDownLet = usort($s_list, function ($a, $b) {
+        $_SESSION['sortDownLet'] = usort($s_list, function ($a, $b) {
           if ($a['name'] == $b['name']) return 0;
           return $a['name'] < $b['name'] ? -1 : 1;
         });
+        if(($_GET['sortBtnNameA'] === 'Дата возрастание') !== ''){
+          unset($_SESSION['sortDownLet']);
+         }
       }
+      
 
 
 
       if (isset($_GET['sortBtnNameZ'])) {
-        $sortUpLet = usort($s_list, function ($a, $b) {
+        $_SESSION['sortUpLet'] = usort($s_list, function ($a, $b) {
           if ($a['name'] == $b['name']) return 0;
           return $a['name'] > $b['name'] ? 1 : 1;
         });
+        if(($_GET['sortBtnNameZ'] === 'Дата возрастание') !== ''){
+          unset($_SESSION['sortUpLet']);
+         }
       }
+      
 
 
 
