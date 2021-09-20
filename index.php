@@ -113,11 +113,11 @@ $curDir = $_GET['sort_direction'] ? $_SESSION['cur_sort']['direction'] = $_GET['
             <?php } ?>
 
 
-            <a href="blog\add.php" class="btn btn-outline-dark add_btn">Добавить свое</a>
+            <a href="blog\add.php" class="btn btn-outline-dark add_btn">Добавить свое!</a>
         </div>
 </main>
 <?php
 
 include('blog/footer.php');
-// 
+
 ?>
