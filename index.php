@@ -119,5 +119,5 @@ $curDir = $_GET['sort_direction'] ? $_SESSION['cur_sort']['direction'] = $_GET['
 <?php
 
 include('blog/footer.php');
-
+// 
 ?>
